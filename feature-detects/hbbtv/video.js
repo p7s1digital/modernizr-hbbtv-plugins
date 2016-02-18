@@ -36,23 +36,8 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
 
   var PLAYSTATES = ['stopped', 'playing', 'paused', 'connecting', 'buffering', 'finished', 'error'];
 
-  /*
-    The test video was generated with the following command:
-
-    ffmpeg -f lavfi \
-    -i color=color=black:rate=25:size=352x288 \
-    -ar 32000 -ac 1 -f s16le -i /dev/zero \
-    -t 180 \
-    -codec:v libx264 -profile:v main -preset veryslow -r:v 25 -aspect 16:9 -g 50 -x264opts pic-struct:no-scenecut:keyint=50:keyint_min=50:colorprim=bt709:transfer=bt709:colormatrix=bt709:open_gop=0 -pix_fmt yuv420p \
-    -codec:a libfdk_aac -profile:a aac_low -b:a 8k \
-    -async 1 \
-    -map_chapters -1 -metadata:s language=deu \
-    -movflags faststart -y \
-    test.mp4
-
-    As several devices crash when the data is set base64 encoded we have to use a link.
-  */
-  var testData = window.MODERNIZR_HBBTVVIDEO_TEST_VIDEO || '//github.com/p7s1digital/Modernizr/raw/hbbtv/test/video/black_352x288_25fps_180s_aac_low.mp4';
+  // As several devices crash when the data is set base64 encoded we have to use a link.
+  var testData = window.MODERNIZR_HBBTVVIDEO_TEST_VIDEO || '//github.com/philippsimon/modernizr-hbbtv-plugin/raw/master/media/black_352x288_25fps_180s_aac_low.mp4';
   if (testData.match(/^\/\//)) {
     testData = ('https:' === document.location.protocol ? 'https:' : 'http:') + testData;
   }
