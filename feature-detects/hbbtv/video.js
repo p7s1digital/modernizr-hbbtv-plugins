@@ -49,21 +49,18 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
   };
   var seekPosition = 30000;
 
-  Modernizr.addAsyncTest(function() {
-    if (!Modernizr.hbbtv) {
-      Modernizr.addTest('hbbtvvideo', false);
-      return;
-    }
+  if (!Modernizr.hbbtv) {
+    Modernizr.addTest('hbbtvvideo', false);
+    return;
+  }
 
-    if (document.readyState === 'complete') {
-      runTests();
-    } else {
-      // console.log('onload');
-      runTests.previousOnLoad = window.onload;
-      window.onload = runTests;
-    }
-
-  });
+  if (document.readyState === 'complete') {
+    runTests();
+  } else {
+    // console.log('onload');
+    runTests.previousOnLoad = window.onload;
+    window.onload = runTests;
+  }
 
   function runTests() {
     // console.log('runTests');
