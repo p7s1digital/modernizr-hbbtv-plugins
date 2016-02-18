@@ -1,5 +1,5 @@
 {
-  "name": "modernizr-hbbtv-plugin",
+  "name": "modernizr-hbbtv-plugins",
   "version": "1.0.0",
   "description": "Modernizr HbbTV Feature Detection Plugin",
   "devDependencies": {
