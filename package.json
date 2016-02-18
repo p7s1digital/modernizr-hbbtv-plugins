@@ -1,0 +1,25 @@
+{
+  "name": "modernizr-hbbtv-plugin",
+  "version": "1.0.0",
+  "description": "Modernizr HbbTV Feature Detection Plugin",
+  "keywords": [
+    "modernizr",
+    "oipf",
+    "hbbtv",
+    "browser",
+    "feature detection"
+  ],
+  "contributors": [
+    {
+      "name": "Philipp Schmidt",
+      "url": "https://github.com/philippsimon"
+    }
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "philippsimon",
+      "email": "mail@philippsimon.de"
+    }
+  ]
+}
