@@ -186,16 +186,16 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           // console.log('video.playState ' + PLAYSTATES[video.playState] + (video.playState < 3 ? ' (' + video.playPosition + 'ms)' : ''));
 
           if (PLAYSTATES[video.playState] === 'error') {
-            switch (video.error) {
-              case 1: // console.log('connection failed'); break;
-              case 2: // console.log('unknown error'); break;
-              case 3: // console.log('insufficient resources'); break;
-              case 4: // console.log('content corrupt or invalid'); break;
-              case 5: // console.log('content not available'); break;
-              case 6: // console.log('content not available at given position'); break;
-              case 7: // console.log('content blocked due to parental control'); break;
-              default: // console.log('error code: ' + video.error); break;
-            }
+            /*switch (video.error) {
+              case 1: console.log('connection failed'); break;
+              case 2: console.log('unknown error'); break;
+              case 3: console.log('insufficient resources'); break;
+              case 4: console.log('content corrupt or invalid'); break;
+              case 5: console.log('content not available'); break;
+              case 6: console.log('content not available at given position'); break;
+              case 7: console.log('content blocked due to parental control'); break;
+              default: console.log('error code: ' + video.error); break;
+            }*/
             finishTest();
             return;
           }
