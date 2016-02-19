@@ -1,5 +1,7 @@
 /*global module */
 
+var fs = require('fs');
+
 module.exports = function(grunt) {
   'use strict';
 
@@ -33,6 +35,25 @@ module.exports = function(grunt) {
             pattern: /(\r?\n|\r)?[ \t]*console\.(log|error)\([^;]*\);[ \t]*/g,
             replacement: ''
           }]
+        }
+      }
+    },
+    template: {
+      test: {
+        options: {
+          data: {
+            columns: 5,
+            features: fs.existsSync(__dirname + '/test/modernizr-hbbtv.js') ? fs
+              .readFileSync(__dirname + '/test/modernizr-hbbtv.js')
+              .toString()
+              .match(/http:\/\/modernizr\.com\/download\?([^\n\r]*)/)[1]
+              .replace(/^-/, '').replace(/-nomin/, '')
+              .split('-')
+              .concat(['hbbtv', 'hbbtvvideo']) : []
+          }
+        },
+        files: {
+          'test/index.xhtml': 'test/index.tmpl.xhtml'
         }
       }
     }

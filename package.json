@@ -6,12 +6,16 @@
     "grunt": "0.4.5",
     "grunt-contrib-jshint": "0.12.0",
     "grunt-jscs": "2.7.0",
+    "grunt-modernizr": "^1.0.2",
     "grunt-string-replace": "^1.2.1",
-    "load-grunt-tasks": "3.4.0"
+    "grunt-template": "^0.2.3",
+    "load-grunt-tasks": "3.4.0",
+    "modernizr": "^3.3.1"
   },
   "scripts": {
     "test": "grunt test --stack",
-    "merge:debug": "git merge debug --no-commit --no-ff && grunt string-replace:console test"
+    "merge:debug": "git merge debug --no-commit --no-ff && grunt string-replace:console test",
+    "build:test": "modernizr --config test/modernizr-config.json --dest test/modernizr-hbbtv.js && cat feature-detects/hbbtv.js feature-detects/hbbtv/video.js >> test/modernizr-hbbtv.js && grunt template:test"
   },
   "keywords": [
     "modernizr",

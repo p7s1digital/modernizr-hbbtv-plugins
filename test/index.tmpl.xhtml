@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+
+<head>
+
+  <meta http-equiv="Content-Type" content="application/vnd.hbbtv.xhtml+xml; charset=UTF-8" />
+
+  <title>HbbTV Feature Detects</title>
+
+  <style type="text/css">
+  /*<![CDATA[*/
+    body {
+      width: 1280px;
+      height: 720px;
+      padding: 20px;
+    }
+
+    .feature-detects {
+      color:black;
+    }
+<% _.forEach(features, function(feature) { %>
+    .<%= feature %> .feature-detects .<%= feature %> {
+      color:green;
+    }
+    .no-<%= feature %> .feature-detects .<%= feature %> {
+      color: red;
+    }<% }); %>
+  /*]]>*/
+  </style>
+
+  <script type="text/javascript" src="modernizr-hbbtv.js"></script>
+
+</head>
+
+<body>
+  <table class="feature-detects"><% _.forEach(features, function(feature) { %>
+    <div class="<%= feature %>"><%= feature %></div><% }); %>
+  </table>
+</body>
+
+</html>
