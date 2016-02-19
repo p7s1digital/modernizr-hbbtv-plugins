@@ -6,10 +6,12 @@
     "grunt": "0.4.5",
     "grunt-contrib-jshint": "0.12.0",
     "grunt-jscs": "2.7.0",
+    "grunt-remove-logging": "^0.2.0",
     "load-grunt-tasks": "3.4.0"
   },
   "scripts": {
-    "test": "grunt test --stack"
+    "test": "grunt test --stack",
+    "removelogging": "grunt removelogging"
   },
   "keywords": [
     "modernizr",

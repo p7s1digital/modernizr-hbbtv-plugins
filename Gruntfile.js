@@ -10,14 +10,7 @@ module.exports = function(grunt) {
     jscs: {
       src: [
         'Gruntfile.js',
-        'src/*.js',
-        'lib/*.js',
-        'test/**/*.js',
-        'feature-detects/**/*.js',
-        '!src/html5printshiv.js',
-        '!test/coverage/**/*.js',
-        '!test/js/lib/**/*.js',
-        '!src/html5shiv.js'
+        'feature-detects/**/*.js'
       ]
     },
     jshint: {
@@ -26,10 +19,13 @@ module.exports = function(grunt) {
       },
       files: [
         'Gruntfile.js',
-        'src/*.js',
-        'lib/*.js',
         'feature-detects/**/*.js'
       ]
+    },
+    removelogging: {
+      'feature-detects': {
+        src: 'feature-detects/**/*.js'
+      }
     }
   });
 
