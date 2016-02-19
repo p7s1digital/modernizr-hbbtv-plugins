@@ -10,26 +10,14 @@
 
   <style type="text/css">
   /*<![CDATA[*/
-    body {
-      width: 1280px;
-      height: 720px;
-      padding: 20px;
-    }
-
-    .feature-detects {
-      color:black;
-    }
+    body { width: 1280px; height: 720px; padding: 20px; }
+    .feature-detects { color:black; }
 <% _.forEach(features, function(feature) { %>
-    .<%= feature %> .feature-detects .<%= feature %> {
-      color:green;
-    }
-    .no-<%= feature %> .feature-detects .<%= feature %> {
-      color: red;
-    }<% }); %>
+    .<%= feature %> .feature-detects .<%= feature %> { color:green; } .no-<%= feature %> .feature-detects .<%= feature %> { color: red; }<% }); %>
   /*]]>*/
   </style>
 
-  <script type="text/javascript" src="modernizr-hbbtv.js"></script>
+  <script type="text/javascript" src="../dist/modernizr-hbbtv.js"></script>
 
 </head>
 

@@ -13,9 +13,11 @@
     "modernizr": "^3.3.1"
   },
   "scripts": {
-    "test": "grunt test --stack",
+    "test": "grunt test --stack && npm run build && npm run build:min && grunt template:test",
     "merge:debug": "git merge debug --no-commit --no-ff && grunt string-replace:console test",
-    "build:test": "modernizr --config test/modernizr-config.json --dest test/modernizr-hbbtv.js && cat feature-detects/hbbtv.js feature-detects/hbbtv/video.js >> test/modernizr-hbbtv.js && grunt template:test"
+
+    "build": "modernizr --config modernizr-config.json --dest dist/modernizr-hbbtv.js && cat feature-detects/hbbtv.js feature-detects/hbbtv/video.js >> dist/modernizr-hbbtv.js",
+    "build:min": "modernizr --config modernizr-config.json --uglify --dest dist/modernizr-hbbtv.min.js && cat feature-detects/hbbtv.js feature-detects/hbbtv/video.js >> dist/modernizr-hbbtv.min.js"
   },
   "keywords": [
     "modernizr",

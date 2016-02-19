@@ -34,4 +34,5 @@ node_modules
 
 .DS_Store
 test/index.xhtml
-test/modernizr-hbbtv.js
+modernizr-hbbtv.js
+modernizr-hbbtv.min.js

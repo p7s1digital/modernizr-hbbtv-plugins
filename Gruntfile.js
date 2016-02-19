@@ -43,8 +43,8 @@ module.exports = function(grunt) {
         options: {
           data: {
             columns: 5,
-            features: fs.existsSync(__dirname + '/test/modernizr-hbbtv.js') ? fs
-              .readFileSync(__dirname + '/test/modernizr-hbbtv.js')
+            features: fs.existsSync(__dirname + '/dist/modernizr-hbbtv.js') ? fs
+              .readFileSync(__dirname + '/dist/modernizr-hbbtv.js')
               .toString()
               .match(/http:\/\/modernizr\.com\/download\?([^\n\r]*)/)[1]
               .replace(/^-/, '').replace(/-nomin/, '')
