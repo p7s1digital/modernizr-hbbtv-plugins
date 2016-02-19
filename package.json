@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "grunt test --stack",
-    "merge:debug": "git merge debug && grunt string-replace:console"
+    "merge:debug": "git merge debug --no-commit --no-ff && grunt string-replace:console"
   },
   "keywords": [
     "modernizr",
