@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "grunt test --stack",
-    "removelogging": "grunt removelogging"
+    "merge:debug": "git merge debug && grunt string-replace:console"
   },
   "keywords": [
     "modernizr",

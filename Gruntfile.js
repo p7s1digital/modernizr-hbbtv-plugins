@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       ]
     },
     'string-replace': {
-      'feature-detects': {
+      console: {
         files: [{
           expand: true,
           src: 'feature-detects/**/*.js'
