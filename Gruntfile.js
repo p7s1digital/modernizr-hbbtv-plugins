@@ -22,9 +22,18 @@ module.exports = function(grunt) {
         'feature-detects/**/*.js'
       ]
     },
-    removelogging: {
+    'string-replace': {
       'feature-detects': {
-        src: 'feature-detects/**/*.js'
+        files: [{
+          expand: true,
+          src: 'feature-detects/**/*.js'
+        }],
+        options: {
+          replacements: [{
+            pattern: /(\r?\n|\r)?[ \t]*console\.(log|error)\([^;]*\);[ \t]*/g,
+            replacement: ''
+          }]
+        }
       }
     }
   });
