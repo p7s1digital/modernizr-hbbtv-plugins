@@ -56,13 +56,11 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
   if (document.readyState === 'complete') {
     runTests();
   } else {
-    console.log('onload');
     runTests.previousOnLoad = window.onload;
     window.onload = runTests;
   }
 
   function runTests() {
-    console.log('runTests');
 
     if (this.previousOnLoad) {
       this.previousOnLoad();
@@ -95,16 +93,13 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           play: function() {
             try {
               video.play(1);
-              console.log('video.play');
             } catch (e) {
-              console.log('video.play failed');
               finishTest();
               return;
             }
 
             setTimeout(function() {
               if (!passed.play) {
-                console.log('video.play timed out');
                 finishTest();
               }
             }, timeouts.play);
@@ -113,16 +108,13 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           pause: function() {
             try {
               video.play(0);
-              console.log('video.pause');
             } catch (e) {
-              console.log('video.pause failed');
               finished.pause = true;
               setTimeout(tests.seek, 0);
             }
 
             setTimeout(function() {
               if (!passed.pause) {
-                console.log('video.pause timed out');
                 finished.pause = true;
                 setTimeout(tests.seek, 0);
               }
@@ -132,9 +124,7 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           seek: function() {
             try {
               video.seek(seekPosition);
-              console.log('video.seek');
               video.play(1);
-              console.log('video.seek');
 
               // send additional seek for some devices which need it executed while the video is in the playing state
               var intervalCounter = 0;
@@ -148,13 +138,11 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
                   clearInterval(interval);
                   if (!isAroundPosition(video, seekPosition)) {
                     video.seek(seekPosition);
-                    console.log('video.seek');
                   }
                 }
               }, 500);
 
             } catch (e) {
-              console.log('video.seek failed');
               finished.seek = true;
               finishTest();
               return;
@@ -179,18 +167,8 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           }
           previousPlayState = video.playState;
 
-          console.log('video.playState ' + PLAYSTATES[video.playState] + (video.playState < 3 ? ' (' + video.playPosition + 'ms)' : ''));
 
           if (PLAYSTATES[video.playState] === 'error') {
-            console.error({
-              1: 'connection failed',
-              2: 'unknown error',
-              3: 'insufficient resources',
-              4: 'content corrupt or invalid',
-              5: 'content not available',
-              6: 'content not available at given position',
-              7: 'content blocked due to parental control'
-            }[video.error] || 'error code: ' + video.error);
             finishTest();
             return;
           }
@@ -221,7 +199,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           }
         };
 
-        console.log('start tests');
         tests.play();
 
         var sentResults = false;
@@ -232,11 +209,9 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           sentResults = true;
 
           destroyVideo(videoId, !existingVideoParams, function() {
-            console.log('destroyed video');
 
             createVideo(existingVideoParams, function() {
 
-              console.log('finished tests');
               Modernizr.addTest('hbbtvvideo', passed.play ? passed : false);
             });
           });
@@ -257,7 +232,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
         function testSeekPosition(video) {
           var intervalCounter = 0;
           var interval = setInterval(function() {
-            console.log('video ' + PLAYSTATES[video.playState] + (video.playState < 3 ? ' (' + video.playPosition + 'ms)' : ''));
 
             if (PLAYSTATES[video.playState] === 'playing' && isAroundPosition(video, seekPosition)) {
               passed.seek = true;
@@ -291,7 +265,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
     try {
       if (video) {
         existingVideoParams = getElementParams(video);
-        console.log('existing video: ' + JSON.stringify(existingVideoParams));
 
         params.fullScreen = existingVideoParams.fullScreen;
         params.className = existingVideoParams.className;
@@ -337,7 +310,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
     }
 
     if (videos.length > 1) {
-      console.log('!! found several video objects');
     }
 
     return videos[0];
@@ -349,7 +321,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
       return;
     }
 
-    console.log('createVideo: ' + JSON.stringify(params));
 
     var attributes = ['id="' + params.id + '"'];
     if (params.className) {
@@ -363,7 +334,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
     var html = '<object ' + attributes.join(' ') + '></object>';
     getElementByParams(params.parentElement).innerHTML = html;
 
-    console.log('video object added to DOM');
 
     setTimeout(function() {
       var video = document.getElementById(params.id);
@@ -371,7 +341,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
       if (!video || (params.attributes.data && (video.getAttribute('data') || video.getAttribute('firetv-data')) !== params.attributes.data) ||
         !video.getAttribute('type').match(params.attributes.type) || !video.parentElement
       ) {
-        console.log('video creation failed');
         callback();
         return;
       }
@@ -379,7 +348,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
       if (typeof video.setFullScreen === 'function') {
         try {
           video.setFullScreen(!!params.fullScreen);
-          console.log('video.setFullScreen');
         } catch (e) {
           // ignore
         }
@@ -388,7 +356,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
       try {
         if (params.onPlayStateChange) {
           video.onPlayStateChange = params.onPlayStateChange;
-          console.log('video.onPlayStateChange');
         }
       } catch (e) {
         // some versions of Samsung 2012 TVs threw an error while setting the function
@@ -399,7 +366,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
       if (video.getAttribute('type') === 'video/broadcast') {
         try {
           video.bindToCurrentChannel();
-          console.log('video.bindToCurrentChannel');
         } catch (e) {
           // ignore
         }
@@ -407,7 +373,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
 
       // many devices need at least to wait for the next tick and 2011 Samsung devices otherwise sometimes throw an error
       setTimeout(function() {
-        console.log('video object available in DOM');
         callback(video);
       }, 300);
     }, 1000);
@@ -427,31 +392,26 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
     var elemParams = getElementParams(elem);
     var parentElement = elem.parentElement;
 
-    console.log('destroyVideo: ' + (elem.id || elem.tagName) + ' ' + elem.type);
 
     try {
-      console.log('destroy: stop');
       getElementByParams(elemParams).stop();
     } catch (e) {
       // ignore
     }
 
     try {
-      console.log('destroy: setFullScreen');
       getElementByParams(elemParams).setFullScreen(false);
     } catch (e) {
       // ignore
     }
 
     try {
-      console.log('destroy: release');
       getElementByParams(elemParams).release();
     } catch (e) {
       // ignore
     }
 
     try {
-      console.log('destroy: onPlayStateChange');
       if (getElementByParams(elemParams).onPlayStateChange) {
         getElementByParams(elemParams).onPlayStateChange = undefined;
       }
@@ -460,7 +420,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
     }
 
     try {
-      console.log('destroy: remove');
       parentElement.removeChild(getElementByParams(elemParams));
     } catch (e) {
       // ignore
@@ -468,7 +427,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
 
     if (removeParent) {
       try {
-        console.log('destroy: parentElement remove');
         parentElement.parentElement.removeChild(parentElement);
       } catch (e) {
         // ignore
