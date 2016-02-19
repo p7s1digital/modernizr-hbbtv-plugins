@@ -1,6 +1,7 @@
 /*global module */
 
 var fs = require('fs');
+var _ = require('underscore');
 
 module.exports = function(grunt) {
   'use strict';
@@ -43,12 +44,13 @@ module.exports = function(grunt) {
         options: {
           data: {
             columns: 5,
-            features: fs.existsSync(__dirname + '/dist/modernizr-hbbtv.js') ? fs
-              .readFileSync(__dirname + '/dist/modernizr-hbbtv.js')
-              .toString()
-              .match(/http:\/\/modernizr\.com\/download\?([^\n\r]*)/)[1]
-              .replace(/^-/, '').replace(/-nomin/, '')
-              .split('-')
+            features: fs.existsSync(__dirname + '/dist/modernizr-hbbtv.js') ?
+              _.without(
+                fs.readFileSync(__dirname + '/dist/modernizr-hbbtv.js').toString()
+                .match(/http:\/\/modernizr\.com\/download\?([^\n\r]*)/)[1]
+                .replace(/^-/, '')
+                .split('-'),
+                'addtest', 'setclasses', 'shiv', 'dontmin')
               .concat(['hbbtv', 'hbbtvvideo']) : []
           }
         },

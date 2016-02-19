@@ -1,7 +1,8 @@
 {
   "options": [
     "addTest",
-    "html5shiv"
+    "html5shiv",
+    "setClasses"
   ],
   "feature-detects": [
     "cookies",
