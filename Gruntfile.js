@@ -43,7 +43,7 @@ module.exports = function(grunt) {
       test: {
         options: {
           data: {
-            columns: 5,
+            columns: 7,
             features: fs.existsSync(__dirname + '/dist/modernizr-hbbtv.js') ?
               _.without(
                 fs.readFileSync(__dirname + '/dist/modernizr-hbbtv.js').toString()

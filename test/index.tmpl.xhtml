@@ -10,8 +10,8 @@
 
   <style type="text/css">
   /*<![CDATA[*/
-    body { width: 1280px; height: 720px; padding: 20px; }
-    .feature-detects { color:black; }
+    body { width: 1280px; height: 720px; padding: 50px; font-family: Arial, Courier }
+    .feature-detects { color:black; width: 1180px }
 <% _.forEach(features, function(feature) { %>
     .<%= feature %> .feature-detects .<%= feature %> { color:green; } .no-<%= feature %> .feature-detects .<%= feature %> { color: red; }<% }); %>
   /*]]>*/
@@ -22,8 +22,11 @@
 </head>
 
 <body>
-  <table class="feature-detects"><% _.forEach(features, function(feature) { %>
-    <div class="<%= feature %>"><%= feature %></div><% }); %>
+  <h1>HbbTV Feature Detects</h1>
+  <table class="feature-detects"><% var i = 0; while (i < features.length) { %>
+    <tr><% for (var column = 0; column < columns && i < features.length; column++) { %>
+      <td class="<%= features[i] %>"><%= features[i] %></td><% i++; } %>
+    </tr><% } %>
   </table>
 </body>
 
