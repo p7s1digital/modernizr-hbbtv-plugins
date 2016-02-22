@@ -2,6 +2,10 @@
   "name": "modernizr-hbbtv-plugins",
   "version": "1.0.0",
   "description": "Modernizr HbbTV Feature Detection Plugin",
+  "bugs": {
+    "url" : "https://github.com/p7s1digital/modernizr-hbbtv-plugins/issues"
+  },
+  "repository": "p7s1digital/modernizr-hbbtv-plugins",
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-contrib-jshint": "0.12.0",
@@ -32,11 +36,5 @@
       "url": "https://github.com/philippsimon"
     }
   ],
-  "license": "MIT",
-  "maintainers": [
-    {
-      "name": "philippsimon",
-      "email": "mail@philippsimon.de"
-    }
-  ]
+  "license": "MIT"
 }

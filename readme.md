@@ -1,4 +1,6 @@
-# Modernizr HbbTV Plugins [![Build Status](https://travis-ci.org/philippsimon/modernizr-hbbtv-plugins.svg?branch=master)](https://travis-ci.org/philippsimon/modernizr-hbbtv-plugins) [![Inline docs](https://inch-ci.org/github/philippsimon/modernizr-hbbtv-plugins.svg?branch=master)](https://inch-ci.org/github/philippsimon/modernizr-hbbtv-plugins)
+# Modernizr HbbTV Plugins [![Build Status](https://travis-ci.org/p7s1digital/modernizr-hbbtv-plugins.svg?branch=master)](https://travis-ci.org/p7s1digital/modernizr-hbbtv-plugins) [![Inline docs](https://inch-ci.org/github/p7s1digital/modernizr-hbbtv-plugins.svg?branch=master)](https://inch-ci.org/github/p7s1digital/modernizr-hbbtv-plugins)
+
+The HbbTV department of [ProSiebenSat.1 Digital](http://www.prosiebensat1digital.de/) develops here some HbbTV feature detection plugins for [Modernizr](https://modernizr.com/).
 
 
 ## License
