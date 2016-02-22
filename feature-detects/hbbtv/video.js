@@ -36,7 +36,7 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
   var PLAYSTATES = ['stopped', 'playing', 'paused', 'connecting', 'buffering', 'finished', 'error'];
 
   // As several devices crash when the data is set base64 encoded we have to use a link.
-  var testData = window.MODERNIZR_HBBTVVIDEO_TEST_VIDEO || '//github.com/philippsimon/modernizr-hbbtv-plugin/raw/master/media/black_352x288_25fps_180s_aac_low.mp4';
+  var testData = window.MODERNIZR_HBBTVVIDEO_TEST_VIDEO || '//github.com/p7s1digital/modernizr-hbbtv-plugins/raw/master/media/black_352x288_25fps_180s_aac_low.mp4';
   if (testData.match(/^\/\//)) {
     testData = ('https:' === document.location.protocol ? 'https:' : 'http:') + testData;
   }
