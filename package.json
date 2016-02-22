@@ -24,7 +24,8 @@
     "test": "grunt test --stack && npm run build && npm run build:min && grunt template:test",
     "merge:debug": "git merge debug --no-commit --no-ff && grunt string-replace:console test",
     "build": "modernizr --config modernizr-config.json --dest dist/modernizr-hbbtv.js && cat feature-detects/hbbtv.js feature-detects/hbbtv/video.js >> dist/modernizr-hbbtv.js",
-    "build:min": "modernizr --config modernizr-config.json --uglify --dest dist/modernizr-hbbtv.min.js && cat feature-detects/hbbtv.js feature-detects/hbbtv/video.js >> dist/modernizr-hbbtv.min.js"
+    "build:min": "modernizr --config modernizr-config.json --uglify --dest dist/modernizr-hbbtv.min.js && cat feature-detects/hbbtv.js feature-detects/hbbtv/video.js >> dist/modernizr-hbbtv.min.js",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags"
   },
   "keywords": [
     "modernizr",
