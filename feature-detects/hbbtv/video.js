@@ -167,7 +167,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           }
           previousPlayState = video.playState;
 
-
           if (PLAYSTATES[video.playState] === 'error') {
             finishTest();
             return;
@@ -274,10 +273,12 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
       } else {
         var parentElement = document.createElement('div');
         parentElement.id = 'modernizer-hbbtvvideo-container-' + (new Date()).getTime();
-        parentElement.style.cssText = 'position:fixed;top:0;left:0;height:1px;width:1px;';
+        parentElement.setAttribute('style', 'position:fixed;top:0;left:0;height:1px;width:1px;');
         document.body.appendChild(parentElement);
 
-        params.parentElement = getElementParams(parentElement);
+        params.parentElement = {
+          id: parentElement.id
+        };
         params.fullScreen = false;
         params.attributes.style = 'position:absolute;top:0;left:0;height:100%;width:100%';
       }
@@ -320,7 +321,6 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
       callback();
       return;
     }
-
 
     var attributes = ['id="' + params.id + '"'];
     if (params.className) {
