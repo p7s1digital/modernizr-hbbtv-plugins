@@ -122,6 +122,14 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           },
 
           seek: function() {
+            // Blacklist for devices that support seeking for short clips but as soon as they need
+            // to buffer stop the video
+            if (navigator.userAgent.match(/(;Mstar;OWB;Arcelik;J5;|\s150\.14\.20\s.*PhilipsTv)/i)) {
+              finished.seek = true;
+              finishTest();
+              return;
+            }
+
             try {
               video.seek(seekPosition);
               video.play(1);
