@@ -122,8 +122,9 @@ For a reliable use I suggest to host the video yourself and set `window.MODERNIZ
           },
 
           seek: function() {
-            // Blacklist for devices that support seeking for short clips but as soon as they need
-            // to buffer stop the video
+            // Don't run the seek test for the devices with a user agent in the following blacklist.
+            // These devices pass this seek test but seeking doesn't work when the devices need to buffer
+            // the content after executing the seek command.
             if (navigator.userAgent.match(/(;Mstar;OWB;Arcelik;J5;|\s150\.14\.20\s.*PhilipsTv)/i)) {
               finished.seek = true;
               finishTest();
