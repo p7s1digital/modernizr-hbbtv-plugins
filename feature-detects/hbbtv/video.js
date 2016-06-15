@@ -1,3 +1,4 @@
+/*jshint -W053 */
 /*!
 {
   "name": "HbbTV Video",
@@ -12,8 +13,10 @@ Returns if the device supports HbbTV video and if seeking inside a video works.
 
   if (Modernizr.hbbtv) {
     var passed = new Boolean(true);
-    // Sadly a simple test doesn't work with the following devices as they fail
-    // while buffering after a seek. For that only a long video would work.
+    // A simple test doesn't work as the problematic devices fail while seeking in a video
+    // that is not yet completely buffered. They passed with a short video.
+    // For playing videos we didn't discover any problems besides that some devices are really
+    // slow.
     if (navigator.userAgent.match(/(;Mstar;OWB;Arcelik;J5;|\s150\.14\.20\s.*PhilipsTv)/i)) {
       passed.seek = false;
     } else {

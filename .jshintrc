@@ -87,6 +87,9 @@
   // latter are used for alignment only. The technique is called SmartTabs.
   "smarttabs": true,
 
+  // This option suppresses warnings when a boolean is created with `new Boolean`
+  "-W053": true,
+
   "globals": {
     "DocumentTouch": true,
     "Modernizr": true,
