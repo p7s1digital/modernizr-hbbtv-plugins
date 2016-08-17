@@ -17,7 +17,7 @@ Returns if the device supports HbbTV video and if seeking inside a video works.
     // that is not yet completely buffered. They passed with a short video.
     // For playing videos we didn't discover any problems besides that some devices are really
     // slow.
-    if (navigator.userAgent.match(/(;Mstar;OWB;Arcelik;J5;|\s150\.14\.20\s.*PhilipsTv)/i)) {
+    if (navigator.userAgent.match(/(;Mstar;OWB;Arcelik;J5;|Philips|Maple_2011|HbbTV\/1\.2\.1 \(; Hisense; SmartTV; V00\.01\.00a\.E0520\))/)) {
       passed.seek = false;
     } else {
       passed.seek = true;
