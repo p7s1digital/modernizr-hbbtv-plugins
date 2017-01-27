@@ -20,6 +20,10 @@ Returns if the device supports HbbTV video and if seeking inside a video works.
 ; (function(window, document, Modernizr) {
   /* global oipfObjectFactory */
 
+  // Deactivate delete rule
+  // @see http://jslint.fantasy.codes/variables-should-not-be-deleted/
+  /* jshint -W051 */
+
   // On ANTGalio devices executing oipfCapabilities.hasCapability('+DRM') crashes the browser and only a restart or program change recovers it
   if (navigator.userAgent.match(/ANTGalio/i)) {
     Modernizr.addTest('hbbtvdrm', false);
@@ -28,6 +32,8 @@ Returns if the device supports HbbTV video and if seeking inside a video works.
 
   // on older devices it works only when the window is loaded
   window.addEventListener('load', function() {
+
+    var oipfCapabilities;
 
     try {
 
@@ -45,7 +51,7 @@ Returns if the device supports HbbTV video and if seeking inside a video works.
         'urn:dvb:casystemid:19156': 'widevine'
       };
 
-      var oipfCapabilities = oipfObjectFactory.createCapabilitiesObject();
+      oipfCapabilities = oipfObjectFactory.createCapabilitiesObject();
 
       if (oipfCapabilities) {
         // Otherwise some devices show a video signal on the screen
@@ -59,6 +65,7 @@ Returns if the device supports HbbTV video and if seeking inside a video works.
         typeof oipfCapabilities.hasCapability !== 'function' ||
         !oipfCapabilities.hasCapability('+DRM')
       ) {
+        // Signal browser to do garbage collection on it
         delete oipfCapabilities;
         Modernizr.addTest('hbbtvdrm', false);
         return;
@@ -106,6 +113,7 @@ Returns if the device supports HbbTV video and if seeking inside a video works.
       Modernizr.addTest('hbbtvdrm', false);
     }
 
+    // Signal browser to do garbage collection on it
     delete oipfCapabilities;
 
   }, false);
