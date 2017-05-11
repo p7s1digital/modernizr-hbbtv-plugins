@@ -9,6 +9,17 @@ module.exports = function(grunt) {
   // load grunt dependencies
   require('load-grunt-tasks')(grunt);
 
+  var features = fs.existsSync(__dirname + '/dist/modernizr-hbbtv.js') ?
+    _.without(
+      fs.readFileSync(__dirname + '/dist/modernizr-hbbtv.js').toString()
+      .match(/https:\/\/modernizr\.com\/download\?([^\n\r]*)/)[1]
+      .replace(/^-/, '')
+      .split('-')
+      .map(function(test) { return test.replace(/_.*$/, ''); }),
+      'addtest', 'setclasses', 'shiv', 'dontmin')
+    .concat(['hbbtv', 'hbbtvvideo', 'hbbtvdrm', 'hbbtvoipfobjectfactory']) : [];
+  console.log(features);
+
   grunt.initConfig({
     jscs: {
       src: [
@@ -43,15 +54,9 @@ module.exports = function(grunt) {
       test: {
         options: {
           data: {
-            columns: 7,
-            features: fs.existsSync(__dirname + '/dist/modernizr-hbbtv.js') ?
-              _.without(
-                fs.readFileSync(__dirname + '/dist/modernizr-hbbtv.js').toString()
-                .match(/http:\/\/modernizr\.com\/download\?([^\n\r]*)/)[1]
-                .replace(/^-/, '')
-                .split('-'),
-                'addtest', 'setclasses', 'shiv', 'dontmin')
-              .concat(['hbbtv', 'hbbtvvideo']) : []
+            columns: 8,
+            features: features,
+            cacheBuster: (new Date()).getTime()
           }
         },
         files: {

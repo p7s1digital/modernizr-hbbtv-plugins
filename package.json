@@ -17,14 +17,14 @@
     "grunt-string-replace": "^1.2.1",
     "grunt-template": "^0.2.3",
     "load-grunt-tasks": "3.4.0",
-    "modernizr": "^3.3.1",
+    "modernizr": "p7s1digital/Modernizr#p7s1",
     "underscore": "^1.8.3"
   },
   "scripts": {
     "test": "grunt test --stack && npm run build && npm run build:min && grunt template:test",
     "merge:debug": "git merge debug --no-commit --no-ff && grunt string-replace:console test",
-    "build": "modernizr --config modernizr-config.json --dest dist/modernizr-hbbtv.js && cat feature-detects/hbbtv.js feature-detects/hbbtv/video.js >> dist/modernizr-hbbtv.js",
-    "build:min": "modernizr --config modernizr-config.json --uglify --dest dist/modernizr-hbbtv.min.js && cat feature-detects/hbbtv.js feature-detects/hbbtv/video.js >> dist/modernizr-hbbtv.min.js",
+    "build": "modernizr --config modernizr-config.json --dest dist/modernizr-hbbtv.js && cat feature-detects/*.js feature-detects/hbbtv/*.js >> dist/modernizr-hbbtv.js",
+    "build:min": "modernizr --config modernizr-config.json --uglify --dest dist/modernizr-hbbtv.min.js && cat feature-detects/*.js feature-detects/hbbtv/*.js >> dist/modernizr-hbbtv.min.js",
     "patch-release": "npm test && npm version patch && npm publish && git push --follow-tags"
   },
   "keywords": [

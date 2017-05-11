@@ -10,24 +10,106 @@
 
   <style type="text/css">
   /*<![CDATA[*/
-    body { width: 1280px; height: 720px; padding: 50px; font-family: Arial, Courier }
-    .feature-detects { color:black; width: 1180px }
+    html {
+      height: 100%;
+      overflow: hidden !important;
+    }
+    body {
+      overflow: hidden !important;
+      font: normal 13px/1.2 'Tiresias PCfont', TiresiasPCfont, 'Tiresias Screen Font', TiresiasScreenfont, Tiresias, 'Philips Screen Font 4', Arial, sans-serif;
+      background: #fff;
+      letter-spacing: 0;
+      color: #000;
+      position: absolute;
+      height: 720px;
+      width: 1280px;
+      margin: 0;
+      padding: 0;
+    }
+    #container {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      padding: 30px 60px;
+      z-index: 1000;
+    }
+    .feature-detects {
+      color:black;
+      width: 100%;
+    }
 <% _.forEach(features, function(feature) { %>
     .<%= feature %> .feature-detects .<%= feature %> { color:green; } .no-<%= feature %> .feature-detects .<%= feature %> { color: red; }<% }); %>
   /*]]>*/
   </style>
 
-  <script type="text/javascript" src="../dist/modernizr-hbbtv.js"></script>
+  <script type="text/javascript">
+  /*<![CDATA[*/
+    window.addEventListener('load', function() {
+      document.addEventListener('keydown', function(e) {
+        document.getElementById('debug').innerHTML += e.keyCode;
+
+        var KeyEvent = window.KeyEvent || {};
+        KeyEvent.VK_YELLOW = KeyEvent.VK_YELLOW || 405;
+        KeyEvent.VK_BACK = KeyEvent.VK_BACK || 461;
+
+        switch (e.keyCode) {
+          case KeyEvent.VK_YELLOW:
+            e.preventDefault();
+            window.location.href = window.location.href.split('?')[0] + '?_=' + (new Date().getTime());
+            break;
+          case KeyEvent.VK_BACK:
+              e.preventDefault();
+              history.back();
+              break;
+        }
+      }, false);
+    }, false);
+  /*]]>*/
+  </script>
+
+  <script type="text/javascript" src="../dist/modernizr-hbbtv.js?_=<%= cacheBuster %>"></script>
 
 </head>
 
 <body>
-  <h1>HbbTV Feature Detects</h1>
-  <table class="feature-detects"><% var i = 0; while (i < features.length) { %>
-    <tr><% for (var column = 0; column < columns && i < features.length; column++) { %>
-      <td class="<%= features[i] %>"><%= features[i] %></td><% i++; } %>
-    </tr><% } %>
-  </table>
+  <div id="container">
+    <h1>HbbTV Feature Detects</h1>
+
+    <div id="debug"></div>
+    <table class="feature-detects">
+      <tr>
+        <td id="meta" colspan="<%= columns %>"></td>
+      </tr><% var i = 0; while (i < features.length) { %>
+      <tr><% for (var column = 0; column < columns && i < features.length; column++) { %>
+        <td class="<%= features[i] %>"><%= features[i] %></td><% i++; } %>
+      </tr><% } %>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+  /*<![CDATA[*/
+    var features = <%= JSON.stringify(features) %>;
+
+    function updateMeta() {
+      var results = [];
+      for (var i = 0; i < features.length; i++) {
+        var feature = features[i];
+        if (Modernizr[feature] && Modernizr[feature] instanceof Boolean) {
+          for (var prop in Modernizr[feature]) {
+            results.push(feature + '.' + prop + ': ' + Modernizr[feature][prop]);
+          }
+        }
+      }
+      document.getElementById('meta').innerHTML = results.join(', ');
+    }
+
+    for (var i = 0; i < features.length; i++) {
+      Modernizr.on(features[i], updateMeta);
+    }
+  /*]]>*/
+  </script>
 </body>
 
 </html>
